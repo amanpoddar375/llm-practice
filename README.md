@@ -57,7 +57,7 @@ pip install -r requirements.txt
 ```bash
 python manage.py migrate
 ```
-### Insert Product Data (Optional)
+### 6. Insert Product Data (Optional)
 
 Create a superuser:
 ```bash
@@ -66,6 +66,7 @@ python manage.py createsuperuser
 
 
 Go to the Django Admin panel at http://127.0.0.1:8000/admin/ and log in using the superuser credentials.
+Alternatively you can insert data using python shell
 
 ![img.png](img.png)
 
