@@ -1,0 +1,128 @@
+[
+  {
+    "name": "Smartphone Moto",
+    "category": "Electronics",
+    "description": "A high-performance smartphone with advanced features.",
+    "price": 499.99,
+    "metadata": {"brand": "TechCorp", "color": "Black"}
+  },
+  {
+    "name": "Laptop Pro",
+    "category": "Electronics",
+    "description": "A powerful laptop for professionals.",
+    "price": 899.99,
+    "metadata": {"brand": "CompTech", "color": "Silver"}
+  },
+  {
+    "name": "Wireless Headphones",
+    "category": "Accessories",
+    "description": "Noise-cancelling headphones with superb sound quality.",
+    "price": 149.99,
+    "metadata": {"brand": "AudioWave", "color": "White"}
+  },
+  {
+    "name": "Smartwatch",
+    "category": "Accessories",
+    "description": "A smartwatch that tracks health metrics and notifications.",
+    "price": 199.99,
+    "metadata": {"brand": "FitTrack", "color": "Blue"}
+  },
+  {
+    "name": "Bluetooth Speaker",
+    "category": "Accessories",
+    "description": "Portable Bluetooth speaker with high-quality sound.",
+    "price": 89.99,
+    "metadata": {"brand": "SoundWave", "color": "Red"}
+  },
+  {
+    "name": "4K TV",
+    "category": "Electronics",
+    "description": "A 50-inch 4K smart TV with HDR and Netflix support.",
+    "price": 599.99,
+    "metadata": {"brand": "VisionTech", "color": "Black"}
+  },
+  {
+    "name": "Tablet Pro",
+    "category": "Electronics",
+    "description": "A sleek tablet for work and entertainment with a large display.",
+    "price": 349.99,
+    "metadata": {"brand": "TabTech", "color": "Silver"}
+  },
+  {
+    "name": "Electric Kettle",
+    "category": "Home Appliances",
+    "description": "Electric kettle with temperature control and auto shut-off feature.",
+    "price": 49.99,
+    "metadata": {"brand": "HomeTech", "color": "Stainless Steel"}
+  },
+  {
+    "name": "Smart Bulb",
+    "category": "Home Appliances",
+    "description": "Smart LED bulb with color-changing and app control.",
+    "price": 29.99,
+    "metadata": {"brand": "BrightHome", "color": "White"}
+  },
+  {
+    "name": "Digital Camera",
+    "category": "Electronics",
+    "description": "Compact digital camera with high-resolution image capture.",
+    "price": 249.99,
+    "metadata": {"brand": "PhotoSnap", "color": "Black"}
+  },
+  {
+    "name": "Electric Toothbrush",
+    "category": "Personal Care",
+    "description": "Smart electric toothbrush with pressure sensor and app connection.",
+    "price": 99.99,
+    "metadata": {"brand": "CleanTech", "color": "White"}
+  },
+  {
+    "name": "Gaming Mouse",
+    "category": "Accessories",
+    "description": "Ergonomic gaming mouse with customizable buttons and RGB lighting.",
+    "price": 59.99,
+    "metadata": {"brand": "GameX", "color": "Black"}
+  },
+  {
+    "name": "Noise-Cancelling Earbuds",
+    "category": "Accessories",
+    "description": "Wireless earbuds with active noise cancellation and great sound quality.",
+    "price": 129.99,
+    "metadata": {"brand": "AudioGear", "color": "Black"}
+  },
+  {
+    "name": "Electric Grill",
+    "category": "Home Appliances",
+    "description": "Compact electric grill with adjustable temperature control.",
+    "price": 89.99,
+    "metadata": {"brand": "GrillMaster", "color": "Silver"}
+  },
+  {
+    "name": "Fitness Tracker",
+    "category": "Accessories",
+    "description": "Wearable fitness tracker with heart rate monitor and GPS.",
+    "price": 149.99,
+    "metadata": {"brand": "FitTrack", "color": "Black"}
+  },
+  {
+    "name": "Smart Thermostat",
+    "category": "Home Appliances",
+    "description": "Wi-Fi enabled smart thermostat with app control for energy efficiency.",
+    "price": 199.99,
+    "metadata": {"brand": "EcoThermo", "color": "White"}
+  },
+  {
+    "name": "Virtual Reality Headset",
+    "category": "Electronics",
+    "description": "Immersive VR headset with motion tracking and 3D sound.",
+    "price": 399.99,
+    "metadata": {"brand": "VRTech", "color": "Black"}
+  },
+  {
+    "name": "Robot Vacuum",
+    "category": "Home Appliances",
+    "description": "Automatic robot vacuum with smart navigation and app control.",
+    "price": 249.99,
+    "metadata": {"brand": "CleanBot", "color": "Gray"}
+  }
+]

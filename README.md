@@ -68,16 +68,27 @@ python manage.py createsuperuser
 Go to the Django Admin panel at http://127.0.0.1:8000/admin/ and log in using the superuser credentials.
 Alternatively you can insert data using python shell
 
-![img.png](img.png)
+![img.png](static/img.png)
 
-![img_1.png](img_1.png)
+![img_1.png](static/img_1.png)
 
-![img_2.png](img_2.png)
+![img_7.png](static/img_7.png)
 
-![img_3.png](img_3.png)
+![img_4.png](static/img_4.png)
 
-![img_4.png](img_4.png)
+![img_3.png](static/img_3.png)
 
-![img_5.png](img_5.png)
+![img_2.png](static/img_2.png)
 
-![img_6.png](img_6.png)
+![img_5.png](static/img_5.png)
+
+
+
+
+
+
+
+
+
+
+![img_6.png](static/img_6.png)

@@ -11,6 +11,42 @@ User = get_user_model()
 
 
 class UserRegistrationView(APIView):
+
+    """
+    API View for user registration.
+
+    Allows new users to register by providing their details.
+    Upon successful registration, a token is created and returned
+    along with the user's information.
+
+    Permissions:
+        - Accessible to anyone (no authentication required).
+
+    Methods:
+        POST: Registers a new user.
+
+    Request Payload:
+        {
+            "username": "string",
+            "password": "string",
+            "email": "string"
+        }
+
+    Response:
+        - On success (status 201):
+            {
+                "user": {
+                    "id": 1,
+                    "username": "username",
+                    "email": "user@example.com"
+                },
+                "token": "generated_auth_token"
+            }
+        - On validation error (status 400):
+            {
+                "error_field": ["error_message"]
+            }
+    """
     permission_classes = [AllowAny]
 
     def post(self, request):
@@ -27,6 +63,37 @@ class UserRegistrationView(APIView):
 
 
 class UserLoginView(APIView):
+
+    """
+    API View for user login.
+
+    Authenticates users with their username and password. If valid,
+    returns an authentication token, user ID, and username.
+
+    Permissions:
+        - Accessible to anyone (no authentication required).
+
+    Methods:
+        POST: Logs in a user.
+
+    Request Payload:
+        {
+            "username": "string",
+            "password": "string"
+        }
+
+    Response:
+        - On success (status 200):
+            {
+                "token": "auth_token",
+                "user_id": 1,
+                "username": "username"
+            }
+        - On authentication failure (status 401):
+            {
+                "error": "Invalid Credentials"
+            }
+    """
     permission_classes = [AllowAny]
 
     def post(self, request):

@@ -10,6 +10,16 @@ import json
 
 @csrf_exempt
 def submit_feedback(request):
+    """
+    Handles the submission of feedback for a specific product.
+
+    Args:
+        request (HttpRequest): The HTTP request object containing feedback data in the body.
+
+    Returns:
+        JsonResponse: A JSON response indicating the success or failure of the operation.
+    """
+
     if request.method == "POST":
         data = json.loads(request.body)
         product_id = data.get("product_id")
@@ -29,6 +39,17 @@ def submit_feedback(request):
     return JsonResponse({"error": "Invalid request method."}, status=405)
 
 def get_feedback(request, product_id):
+    """
+    Retrieves feedback for a specific product.
+
+    Args:
+        request (HttpRequest): The HTTP request object.
+        product_id (int): The ID of the product whose feedback is to be retrieved.
+
+    Returns:
+        JsonResponse: A JSON response containing a list of feedback data or an error message.
+    """
+
     try:
         product = Product.objects.get(id=product_id)
         feedback_list = product.feedback.all()

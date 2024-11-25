@@ -9,10 +9,67 @@ from .serializers import RecommendationSerializer
 from .recommendation_engine import LLMRecommendationEngine
 from products.models import Product
 
-from authentication.bearer_token_authentication import BearerTokenAuthentication
+from utils.authentication.bearer_token_authentication import BearerTokenAuthentication
 
 
 class RecommendProducts(APIView):
+    """
+    RecommendProducts API View
+
+    This view handles personalized product recommendations for authenticated users
+    based on their preferences. It uses a recommendation engine to generate
+    suggested products, stores the recommendations in the database, and returns
+    the serialized data to the user.
+
+    Authentication:
+        Requires a valid bearer token.
+
+    Permissions:
+        Only authenticated users are allowed to access this view.
+
+    Methods:
+        POST: Generates and returns product recommendations.
+
+    Request Payload:
+        {
+            "user_preferences": "string describing user preferences"
+        }
+
+    Args:
+        request (Request): The HTTP request object containing user preferences.
+
+    Workflow:
+        1. Validates the presence of `user_preferences` in the request payload.
+        2. Uses the `LLMRecommendationEngine` to generate product recommendations.
+        3. Retrieves corresponding `Product` objects from the database.
+        4. Creates `Recommendation` records for each product with a score.
+        5. Serializes the created recommendations and returns them.
+
+    Returns:
+        Response:
+            - On success: A JSON response containing the recommendations and user preferences.
+              Example:
+              {
+                  "recommendations": [
+                      {
+                          "id": 1,
+                          "user": 3,
+                          "product": {
+                              "id": 101,
+                              "name": "Product Name",
+                              "category": "Category",
+                              ...
+                          },
+                          "score": 0.95,
+                          "created_at": "2024-11-25T12:34:56Z"
+                      }
+                  ],
+                  "user_preferences": "I like technology and gadgets"
+              }
+            - On input error (status 400): {"error": "User preferences are required"}
+            - On server error (status 500): {"error": "Error message"}
+    """
+
     authentication_classes = [BearerTokenAuthentication]
     permission_classes = [IsAuthenticated]
 
