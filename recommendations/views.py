@@ -7,11 +7,13 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Recommendation
 from .serializers import RecommendationSerializer
 from .recommendation_engine import LLMRecommendationEngine
-from ..products.models import Product
+from products.models import Product
+
+from authentication.bearer_token_authentication import BearerTokenAuthentication
 
 
 class RecommendProducts(APIView):
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [BearerTokenAuthentication]
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
@@ -25,7 +27,7 @@ class RecommendProducts(APIView):
         """
         print(f"Request headers: {request.headers}")
         # Validate input
-        user_preferences = request.data.get("preferences")
+        user_preferences = request.data.get("user_preferences")
         if not user_preferences:
             return Response(
                 {"error": "User preferences are required"},
