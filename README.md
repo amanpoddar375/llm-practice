@@ -73,6 +73,7 @@ Alternatively you can insert data using python shell
 ![img_1.png](static/img_1.png)
 
 ![img_7.png](static/img_7.png)
+![alt text](image.png)
 
 ![img_4.png](static/img_4.png)
 
