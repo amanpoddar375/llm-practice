@@ -11,6 +11,47 @@ from rest_framework.permissions import IsAuthenticated
 from .models import Product
 from .serializers import ProductSerializer
 
+class BulkCreateProductView(APIView):
+    """
+    Handles the creation of multiple products in one request.
+
+    This view accepts a list of product data dictionaries, validates them using
+    the ProductSerializer, and saves them to the database if valid.
+
+    Authentication:
+        Requires a valid bearer token.
+
+    Permissions:
+        Only authenticated users are allowed to access this view.
+
+    Methods:
+        post(request): Creates multiple new products.
+
+    Args:
+        request (Request): The HTTP request containing a list of product data.
+
+    Returns:
+        Response: A JSON response with created products' data (status 201),
+                  or validation errors (status 400).
+    """
+
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        # Check if the request data is a list
+        if isinstance(request.data, list):
+            serializer = ProductSerializer(data=request.data, many=True)
+        else:
+            return Response(
+                {"error": "Expected a list of product data."},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class CreateProductView(APIView):
     """

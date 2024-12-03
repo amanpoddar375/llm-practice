@@ -1,27 +1,35 @@
-from django.shortcuts import render
-
-# Create your views here.
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from utils.authentication.bearer_token_authentication import BearerTokenAuthentication
 from .models import Feedback
 from products.models import Product
-import json
 
-@csrf_exempt
-def submit_feedback(request):
+class SubmitFeedbackView(APIView):
     """
-    Handles the submission of feedback for a specific product.
+    API endpoint for submitting feedback for a specific product.
 
-    Args:
-        request (HttpRequest): The HTTP request object containing feedback data in the body.
+    Authentication:
+        Requires a valid Bearer Token for the user to submit feedback.
 
-    Returns:
-        JsonResponse: A JSON response indicating the success or failure of the operation.
+    Permissions:
+        Only authenticated users are allowed to access this view.
+
+    HTTP Methods:
+        POST: Submit feedback for a product.
+
+    Attributes:
+        authentication_classes (list): Specifies the authentication classes used for the view.
+        permission_classes (list): Specifies the permission classes used for the view.
     """
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
-    if request.method == "POST":
-        data = json.loads(request.body)
+    def post(self, request):
+        """
+        Handles the submission of feedback for a specific product.
+        """
+        data = request.data
         product_id = data.get("product_id")
         user_name = data.get("user_name")
         rating = data.get("rating")
@@ -32,36 +40,46 @@ def submit_feedback(request):
             feedback = Feedback.objects.create(
                 product=product, user_name=user_name, rating=rating, comment=comment
             )
-            return JsonResponse({"message": "Feedback submitted successfully!"}, status=201)
+            return Response({"message": "Feedback submitted successfully!"}, status=201)
         except Product.DoesNotExist:
-            return JsonResponse({"error": "Product not found."}, status=404)
-
-    return JsonResponse({"error": "Invalid request method."}, status=405)
-
-def get_feedback(request, product_id):
+            return Response({"error": "Product not found."}, status=404)
+        
+class GetFeedbackView(APIView):
     """
-    Retrieves feedback for a specific product.
+    API endpoint for retrieving feedback for a specific product.
 
-    Args:
-        request (HttpRequest): The HTTP request object.
-        product_id (int): The ID of the product whose feedback is to be retrieved.
+    Authentication:
+        Requires a valid Bearer Token for the user to view feedback.
 
-    Returns:
-        JsonResponse: A JSON response containing a list of feedback data or an error message.
+    Permissions:
+        Only authenticated users are allowed to access this view.
+
+    HTTP Methods:
+        GET: Retrieve feedback for a specific product by its ID.
+
+    Attributes:
+        authentication_classes (list): Specifies the authentication classes used for the view.
+        permission_classes (list): Specifies the permission classes used for the view.
     """
+    authentication_classes = [BearerTokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
-    try:
-        product = Product.objects.get(id=product_id)
-        feedback_list = product.feedback.all()
-        feedback_data = [
-            {
-                "user_name": feedback.user_name,
-                "rating": feedback.rating,
-                "comment": feedback.comment,
-                "created_at": feedback.created_at,
-            }
-            for feedback in feedback_list
-        ]
-        return JsonResponse({"feedback": feedback_data})
-    except Product.DoesNotExist:
-        return JsonResponse({"error": "Product not found."}, status=404)
+    def get(self, request, product_id):
+        """
+        Retrieves feedback for a specific product.
+        """
+        try:
+            product = Product.objects.get(id=product_id)
+            feedback_list = product.feedback.all()
+            feedback_data = [
+                {
+                    "user_name": feedback.user_name,
+                    "rating": feedback.rating,
+                    "comment": feedback.comment,
+                    "created_at": feedback.created_at,
+                }
+                for feedback in feedback_list
+            ]
+            return Response({"feedback": feedback_data})
+        except Product.DoesNotExist:
+            return Response({"error": "Product not found."}, status=404)
